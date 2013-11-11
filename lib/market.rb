@@ -1,5 +1,5 @@
 class Market
-  attr_accessor :id, :name, :address, :city, :county, :state, :zip_code
+  attr_accessor :id, :name, :address, :city, :county, :state, :zip
 
   def initialize(array)
     @id = ""
@@ -8,7 +8,7 @@ class Market
     @city = ""
     @county = ""
     @state = ""
-    @zip_code = ""
+    @zip = ""
   end
 
   def self.all

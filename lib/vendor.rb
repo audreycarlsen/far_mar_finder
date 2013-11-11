@@ -1,8 +1,11 @@
 class Vendor
-  attr_accessor :id
+  attr_accessor :id, :name, :num_employees, :market_id
 
   def initialize(array)
     @id = ""
+    @name = ""
+    @num_employees = ""
+    @market_id = ""
   end
 
   def self.all

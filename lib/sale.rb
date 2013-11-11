@@ -1,8 +1,12 @@
 class Sale
-  attr_accessor :id
+  attr_accessor :id, :amount, :purchase_time, :vendor_id, :product_id
 
   def initialize(array)
     @id = ""
+    @amount = ""
+    @purchase_time = ""
+    @vendor_id = ""
+    @product_id = ""
   end
 
   def self.all
