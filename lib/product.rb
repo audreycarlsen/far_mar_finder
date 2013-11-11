@@ -2,9 +2,9 @@ class Product
   attr_accessor :id, :food, :price
 
   def initialize(array)
-    @id = 
-    @food = 
-    @price =
+    @id = ""
+    @food = ""
+    @price = ""
   end
 
   def self.all

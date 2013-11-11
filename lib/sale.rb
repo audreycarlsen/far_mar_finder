@@ -2,7 +2,7 @@ class Sale
   attr_accessor :id
 
   def initialize(array)
-    @id = 
+    @id = ""
   end
 
   def self.all

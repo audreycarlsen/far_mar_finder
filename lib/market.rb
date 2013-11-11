@@ -2,13 +2,13 @@ class Market
   attr_accessor :id, :name, :address, :city, :county, :state, :zip_code
 
   def initialize(array)
-    @id = 
-    @name = 
-    @address = 
-    @city = 
-    @county =
-    @state =
-    @zip_code =
+    @id = ""
+    @name = ""
+    @address = ""
+    @city = ""
+    @county = ""
+    @state = ""
+    @zip_code = ""
   end
 
   def self.all
