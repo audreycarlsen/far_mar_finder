@@ -1,7 +1,9 @@
 require 'csv'
 require 'time'
 require_relative 'market'
-# ... Require all of the supporting classes
+require_relative 'product'
+require_relative 'sale'
+require_relative 'vendor'
 
 class FarMarFinder
   
