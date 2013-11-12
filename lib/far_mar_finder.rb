@@ -26,5 +26,5 @@ class FarMarFinder
   end
 end
 
-finder = FarMarFinder.new
-puts finder.sales.between('2011-03-30 02:47:56 -0700', '2012-01-27 17:30:41 -0800').inspect
+# finder = FarMarFinder.new
+# puts finder.sales.find(5).vendor.inspect

@@ -2,15 +2,15 @@ class Sale
   attr_accessor :id, :amount, :purchase_time, :vendor_id, :product_id
 
   def initialize(array)
-    @id = array[0]
-    @amount = array[1]
+    @id = array[0].to_i
+    @amount = array[1].to_i
     @purchase_time = array[2]
-    @vendor_id = array[3]
-    @product_id = array[4]
+    @vendor_id = array[3].to_i
+    @product_id = array[4].to_i
   end
 
   def self.all
-    CSV.read("../support/sales.csv").map do |array|
+    CSV.read("./support/sales.csv").map do |array|
       Sale.new(array)
     end
   end

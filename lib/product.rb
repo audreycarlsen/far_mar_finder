@@ -2,13 +2,13 @@ class Product
   attr_accessor :id, :name, :vendor_id
 
   def initialize(array)
-    @id = array[0]
+    @id = array[0].to_i
     @name = array[1]
-    @vendor_id = array[2]
+    @vendor_id = array[2].to_i
   end
 
   def self.all
-    CSV.read("../support/products.csv").map do |array|
+    CSV.read("./support/products.csv").map do |array|
       Product.new(array)
     end
   end
@@ -19,15 +19,15 @@ class Product
     end
   end
 
-  def self.find_by(x, match)
+  def self.by_market(market)
     all.find do |product|
-      product.x.downcase = match
+      product.market_id == market.downcase
     end
   end
 
-  def self.find_all_by(x, match)
-    all.select do |product|
-      product.x.downcase = match
+  def self.all_by_market(market)
+    all.select do |vendor|
+      vendor.market_id == market.downcase
     end
   end
 

@@ -80,8 +80,8 @@ See below for full description of methods to create.
 **Additional Vendor Methods**
 
 - `market` - returns the `Market` instance that is associated with this vendor using the `Vendor` `market_id` field
-- `products` - returns a collection of `Product` instances that are associated with market by the `Product` `vendor_id` field.
-- `sales` - returns a collection of `Sale` instances that are associated with market by the `vendor_id` field.
+- `products` - returns a collection of `Product` instances that are associated with vendor by the `Product` `vendor_id` field.
+- `sales` - returns a collection of `Sale` instances that are associated with vendor by the `vendor_id` field.
 - `revenue` - returns the the sum of all of the vendor's sales (in cents)
 
 **Additional Product Methods**

@@ -2,7 +2,7 @@ class Market
   attr_accessor :id, :name, :address, :city, :county, :state, :zip
 
   def initialize(market)
-    @id = market[0]
+    @id = market[0].to_i
     @name = market[1]
     @address = market[2]
     @city = market[3]
@@ -12,7 +12,7 @@ class Market
   end
 
   def self.all
-    CSV.read('../support/markets.csv').map do |market|
+    CSV.read('./support/markets.csv').map do |market|
       Market.new(market)
     end
   end
