@@ -35,9 +35,12 @@ class Market
     end
   end
 
-  def vendors
-
+  def vendors(id)
+    Vendor.all.select { |vendor| vendor[3] == id }
   end
+
 
   # TODO check for x's validity
 end
+
+Market.find(5).vendor
