@@ -1,6 +1,3 @@
-require 'csv'
-require_relative 'vendor'
-
 class Market
   attr_accessor :id, :name, :address, :city, :county, :state, :zip
 
@@ -28,13 +25,13 @@ class Market
 
   def self.find_by(x, match)
     all.find do |market|
-      market.x.downcase
+      market.x.downcase = match
     end
   end
 
   def self.find_all_by(x, match)
     all.select do |market|
-      market.x.downcase
+      market.x.downcase = match
     end
   end
 
@@ -49,7 +46,3 @@ class Market
 
   # TODO check for x's validity
 end
-
-market5 = Market.find("5")
-puts market5
-puts market5.vendors

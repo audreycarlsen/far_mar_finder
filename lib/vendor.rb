@@ -1,6 +1,3 @@
-require 'csv'
-require_relative 'market'
-
 class Vendor
   attr_accessor :id, :name, :num_employees, :market_id
 
@@ -19,29 +16,32 @@ class Vendor
 
   def self.find(id)
     all.find do |vendor|
-      vendor.id
+      vendor.id == id
     end
   end
 
   def self.find_by(x, match)
     all.find do |vendor|
-      vendor.x.downcase
+      vendor.x.downcase == match
     end
   end
 
   def self.find_all_by(x, match)
     all.select do |vendor|
-      vendor.x.downcase
+      vendor.x.downcase == match
     end
   end
 
   def market
+    Market.all.find { |market| market.id == market_id }
   end
 
   def products
+    Product.all.select { |product| product.vendor_id == id }
   end
 
   def sales
+    Sale.all.select { |sale| sale.vendor_id == id }
   end
 
   def revenue
