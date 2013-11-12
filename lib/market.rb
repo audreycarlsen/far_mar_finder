@@ -1,3 +1,4 @@
+require 'csv'
 require_relative "vendor"
 
 class Market
@@ -14,14 +15,14 @@ class Market
   end
 
   def self.all
-    CSV.read('./support/markets.csv').map do |market|
+    CSV.read('../support/markets.csv').map do |market|
       Market.new(market)
     end
   end
 
-  def self.find(@id)
+  def self.find(id)
     all.find do |market|
-      market.@id
+      market.id == id
     end
   end
 
@@ -38,13 +39,13 @@ class Market
   end
 
   def vendors
-    Vendor.all.select { |vendor| vendor.@market_id == @id }
+    Vendor.all.select { |vendor| vendor.market_id == id }.each { |vendor| [].push(vendor.name)}
   end
 
 
   # TODO check for x's validity
 end
 
-# market5 = Market.find("5")
-# puts market5
-# market5.vendors
+market5 = Market.find("5")
+puts market5
+market5.vendors
