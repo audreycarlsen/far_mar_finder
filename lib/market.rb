@@ -1,5 +1,5 @@
 require 'csv'
-require_relative "vendor"
+require_relative 'vendor'
 
 class Market
   attr_accessor :id, :name, :address, :city, :county, :state, :zip
@@ -39,7 +39,11 @@ class Market
   end
 
   def vendors
-    Vendor.all.select { |vendor| vendor.market_id == id }.each { |vendor| [].push(vendor.name)}
+    # vendor_array = 
+    Vendor.all.select { |vendor| vendor.market_id == id }
+    # vendor_name_array = []
+    # vendor_array.each { |vendor| vendor_name_array << vendor.name }
+    # puts vendor_name_array
   end
 
 
@@ -48,4 +52,4 @@ end
 
 market5 = Market.find("5")
 puts market5
-market5.vendors
+puts market5.vendors

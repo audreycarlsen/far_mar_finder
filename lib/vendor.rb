@@ -1,3 +1,6 @@
+require 'csv'
+require_relative 'market'
+
 class Vendor
   attr_accessor :id, :name, :num_employees, :market_id
 
