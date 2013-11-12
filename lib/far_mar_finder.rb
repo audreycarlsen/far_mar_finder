@@ -27,4 +27,4 @@ class FarMarFinder
 end
 
 finder = FarMarFinder.new
-puts finder.vendors.find("5").products.count
+puts finder.products.find("5").number_of_sales
