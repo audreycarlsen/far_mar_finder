@@ -14,4 +14,34 @@ class Sale
       Sale.new(array)
     end
   end
+  
+  def self.find(id)
+    all.find do |sale|
+      sale.id == id
+    end
+  end
+
+  def self.find_by(x, match)
+    all.find do |sale|
+      sale.x.downcase == match
+    end
+  end
+
+  def self.find_all_by(x, match)
+    all.select do |sale|
+      sale.x.downcase == match
+    end
+  end
+  
+  def vendor
+    Vendor.all.find { |vendor| vendor.id == vendor_id }
+  end
+
+  def product
+    Product.all.find { |product| product.id == product_id }
+  end
+
+  def self.between(beginning_time, end_time)
+    all.select { |sale| Time.parse(beginning_time) < Time.parse(sale.purchase_time) && Time.parse(sale.purchase_time) < Time.parse(end_time) }
+  end
 end
