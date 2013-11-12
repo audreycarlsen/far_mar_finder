@@ -45,5 +45,6 @@ class Vendor
   end
 
   def revenue
+    sales.map { |sale| sale.amount.to_i }.reduce(:+)
   end
 end
