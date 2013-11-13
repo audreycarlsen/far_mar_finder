@@ -27,5 +27,6 @@ class FarMarFinder
   end
 end
 
+
 finder = FarMarFinder.new
-puts finder.markets.find(5).preferred_vendor.inspect
+puts finder.vendors.find(1).revenue

@@ -43,12 +43,23 @@ class Market
     vendors.map { |vendor| vendor.products }.flatten
   end
 
-  def preferred_vendor
+  def self.search(search_term)
+    all.select do |market|
+      market.name.downcase.include?(search_term.downcase)
+    end
+  end
+
+  def preferred_vendor(options = {})
     max_revenue = vendors.map {|vendor| vendor.revenue}.max
     vendors.select { |vendor| vendor.revenue == max_revenue}
   end
 
-def preferred_vendor_date
-  Vendor.find(Sale.find_by_amount(sale_amounts.max).vendor_id)
-end
+  # def preferred_vendor_by_date(date)
+  #   Vendor.find(Sale.find_by_amount(sale_amounts.max).vendor_id)
+  # end
+
+  def worst_vendor
+    min_revenue = vendors.map {|vendor| vendor.revenue}.min
+    vendors.select { |vendor| vendor.revenue == min_revenue}
+  end
 end

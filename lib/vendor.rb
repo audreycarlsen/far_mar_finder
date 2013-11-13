@@ -1,5 +1,5 @@
 class Vendor
-  attr_accessor :id, :name, :no_of_employees, :market_id, :revenue
+  attr_accessor :id, :name, :no_of_employees, :market_id
 
   def initialize(array)
     @id = array[0].to_i
@@ -51,6 +51,15 @@ class Vendor
   end
 
   def revenue
-    @revenue = sales.map { |sale| sale.amount.to_i }.reduce(:+)
+    sales.map { |sale| sale.amount.to_i }.reduce(:+)
   end
+
+  # def revenue(options = {})
+  #   date_max = sales.map {|sale| sale.purchase_time}.max
+  #   date_min = sales.map {|sale| sale.purchase_time}.min
+  #   date = options[:date] || (date_min..date_max)
+
+  #   date.map do |date| 
+  #   sales.map { |sale| sale.amount.to_i }.reduce(:+)
+  # end
 end
