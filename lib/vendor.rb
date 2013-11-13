@@ -1,5 +1,5 @@
 class Vendor
-  attr_accessor :id, :name, :num_employees, :market_id
+  attr_accessor :id, :name, :no_of_employees, :market_id
 
   def initialize(array)
     @id = array[0].to_i
@@ -20,17 +20,23 @@ class Vendor
     end
   end
 
-  def self.find_by_market(market)
-    all.find do |vendor|
-      vendor.market_id == market
+  def self.by_market(market_id)
+    all.select do |vendor|
+      vendor.market_id == market_id
     end
   end
 
-  def self.all_by_market(market)
-    all.select do |vendor|
-      vendor.market_id == market
-    end
-  end
+  # def self.find_by_x(market)
+  #   all.select do |vendor|
+  #     vendor.market_id == market
+  #   end
+  # end
+
+  # def self.find_all_by_x(market)
+  #   all.select do |vendor|
+  #     vendor.market_id == market
+  #   end
+  # end
 
   def market
     Market.all.find { |market| market.id == market_id }

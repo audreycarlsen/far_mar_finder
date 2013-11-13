@@ -19,17 +19,20 @@ class Product
     end
   end
 
-  def self.by_vendor(vendor)
-    all.find do |product|
-      product.vendor_id == vendor
+  def self.by_vendor(vendor_id)
+    all.select do |product|
+      product.vendor_id == vendor_id
     end
   end
 
-  def self.all_by_vendor(vendor)
-    all.select do |product|
-      product.vendor_id == vendor
-    end
-  end
+  # def self.find_by_x
+  # end
+
+  # def self.all_by_x(vendor)
+  #   all.select do |product|
+  #     product.vendor_id == vendor
+  #   end
+  # end
 
   def vendor
     Vendor.all.find { |vendor| vendor.id == vendor_id }

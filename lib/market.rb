@@ -36,11 +36,7 @@ class Market
   # end
 
   def vendors
-    # vendor_array = 
     Vendor.all.select { |vendor| vendor.market_id == id }
-    # vendor_name_array = []
-    # vendor_array.each { |vendor| vendor_name_array << vendor.name }
-    # puts vendor_name_array
   end
 
 
