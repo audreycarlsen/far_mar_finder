@@ -39,6 +39,16 @@ class Market
     Vendor.all.select { |vendor| vendor.market_id == id }
   end
 
+  def products
+    vendors.map { |vendor| vendor.products }.flatten
+  end
 
-  # TODO check for x's validity
+  def preferred_vendor
+    max_revenue = vendors.map {|vendor| vendor.revenue}.max
+    vendors.select { |vendor| vendor.revenue == max_revenue}
+  end
+
+def preferred_vendor_date
+  Vendor.find(Sale.find_by_amount(sale_amounts.max).vendor_id)
+end
 end

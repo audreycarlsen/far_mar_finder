@@ -1,5 +1,5 @@
 class Vendor
-  attr_accessor :id, :name, :no_of_employees, :market_id
+  attr_accessor :id, :name, :no_of_employees, :market_id, :revenue
 
   def initialize(array)
     @id = array[0].to_i
@@ -51,6 +51,6 @@ class Vendor
   end
 
   def revenue
-    sales.map { |sale| sale.amount.to_i }.reduce(:+)
+    @revenue = sales.map { |sale| sale.amount.to_i }.reduce(:+)
   end
 end
