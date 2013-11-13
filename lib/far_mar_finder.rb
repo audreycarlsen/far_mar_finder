@@ -27,7 +27,5 @@ class FarMarFinder
   end
 end
 
-
 finder = FarMarFinder.new
-puts finder.vendors.find_by_name("shields inc").inspect
-puts finder.vendors.find_all_above_no_of_employees('11').count
+puts finder.markets.find(5).preferred_vendor.inspect
