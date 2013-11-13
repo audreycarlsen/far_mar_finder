@@ -23,8 +23,8 @@ describe Vendor do
       vendor_class.should respond_to :find
     end
     
-    it "responds to 'by_market'" do
-      vendor_class.should respond_to :by_market
+    it "responds to 'find_by_market'" do
+      vendor_class.should respond_to :find_by_market
     end
     
     it "find the first vendor by market 1" do

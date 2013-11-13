@@ -23,17 +23,17 @@ class Market
     end
   end
 
-  def self.find_by(x, match)
-    all.find do |market|
-      market.x.downcase = match
-    end
-  end
+  # def self.find_by(x, match)
+  #   all.find do |market|
+  #     market.x.downcase = match
+  #   end
+  # end
 
-  def self.find_all_by(x, match)
-    all.select do |market|
-      market.x.downcase = match
-    end
-  end
+  # def self.find_all_by(x, match)
+  #   all.select do |market|
+  #     market.x.downcase = match
+  #   end
+  # end
 
   def vendors
     # vendor_array = 

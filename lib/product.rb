@@ -19,15 +19,15 @@ class Product
     end
   end
 
-  def self.by_market(market)
+  def self.by_vendor(vendor)
     all.find do |product|
-      product.market_id == market.downcase
+      product.vendor_id == vendor
     end
   end
 
-  def self.all_by_market(market)
-    all.select do |vendor|
-      vendor.market_id == market.downcase
+  def self.all_by_vendor(vendor)
+    all.select do |product|
+      product.vendor_id == vendor
     end
   end
 

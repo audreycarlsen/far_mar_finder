@@ -4,7 +4,7 @@ class Sale
   def initialize(array)
     @id = array[0].to_i
     @amount = array[1].to_i
-    @purchase_time = array[2]
+    @purchase_time = Time.parse(array[2])
     @vendor_id = array[3].to_i
     @product_id = array[4].to_i
   end
@@ -21,17 +21,17 @@ class Sale
     end
   end
 
-  def self.find_by(x, match)
-    all.find do |sale|
-      sale.x.downcase == match
-    end
-  end
+  # def self.find_by(x, match)
+  #   all.find do |sale|
+  #     sale.x.downcase == match
+  #   end
+  # end
 
-  def self.find_all_by(x, match)
-    all.select do |sale|
-      sale.x.downcase == match
-    end
-  end
+  # def self.find_all_by(x, match)
+  #   all.select do |sale|
+  #     sale.x.downcase == match
+  #   end
+  # end
   
   def vendor
     Vendor.all.find { |vendor| vendor.id == vendor_id }
@@ -42,6 +42,6 @@ class Sale
   end
 
   def self.between(beginning_time, end_time)
-    all.select { |sale| Time.parse(beginning_time) < Time.parse(sale.purchase_time) && Time.parse(sale.purchase_time) < Time.parse(end_time) }
+    all.select { |sale| Time.parse(beginning_time) < sale.purchase_time && sale.purchase_time < Time.parse(end_time) }
   end
 end
