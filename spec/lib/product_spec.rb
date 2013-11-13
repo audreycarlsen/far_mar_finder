@@ -44,7 +44,7 @@ describe Product do
       product.name.should eq "Black Apples"
     end
     
-    it "has the market_id 3" do
+    it "has the vendor id 5" do
       product.vendor_id.should eq 5
     end
   end
