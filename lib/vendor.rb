@@ -9,7 +9,7 @@ class Vendor
   end
 
   def self.all
-    @@all ||= CSV.read('./support/vendors.csv').each.map do |array|
+    @all ||= CSV.read('./support/vendors.csv').each.map do |array|
       Vendor.new(array)
     end
   end
@@ -26,17 +26,17 @@ class Vendor
     end
   end
 
-  # def self.find_by_x(market)
-  #   all.select do |vendor|
-  #     vendor.market_id == market
-  #   end
-  # end
+  def self.find_by_name(name)
+    all.find do |vendor|
+      vendor.name.downcase == name.downcase
+    end
+  end
 
-  # def self.find_all_by_x(market)
-  #   all.select do |vendor|
-  #     vendor.market_id == market
-  #   end
-  # end
+  def self.find_all_above_no_of_employees(no_of_employees)
+    all.select do |vendor|
+      vendor.no_of_employees >= no_of_employees.to_i
+    end
+  end
 
   def market
     Market.all.find { |market| market.id == market_id }

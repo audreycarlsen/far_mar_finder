@@ -8,7 +8,7 @@ class Product
   end
 
   def self.all
-    @@all ||= CSV.read('./support/products.csv').map do |array|
+    @all ||= CSV.read('./support/products.csv').map do |array|
       Product.new(array)
     end
   end
@@ -25,14 +25,17 @@ class Product
     end
   end
 
-  # def self.find_by_x
-  # end
+  def self.find_by_name(name)
+    all.find do |product|
+      product.name.downcase == name.downcase
+    end
+  end
 
-  # def self.all_by_x(vendor)
-  #   all.select do |product|
-  #     product.vendor_id == vendor
-  #   end
-  # end
+  def self.find_all_by_type(type)
+    all.select do |product|
+      product.name.downcase.include?(type.downcase)
+    end
+  end
 
   def vendor
     Vendor.all.find { |vendor| vendor.id == vendor_id }
