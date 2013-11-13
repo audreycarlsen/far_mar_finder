@@ -12,12 +12,8 @@ class Market
   end
 
   def self.all
-    if Market.class_variable_defined?(:@@all)
-      @@all
-    else
-      @@all = CSV.read('./support/markets.csv').map do |market|
-        Market.new(market)
-      end
+    @@all ||= CSV.read('./support/markets.csv').map do |market|
+      Market.new(market)
     end
   end
 
