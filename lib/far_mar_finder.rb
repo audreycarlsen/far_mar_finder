@@ -1,3 +1,4 @@
+require 'benchmark'
 require 'csv'
 require 'time'
 require_relative 'market'
@@ -26,5 +27,7 @@ class FarMarFinder
   end
 end
 
-# finder = FarMarFinder.new
-# puts finder.sales.find(5).vendor.inspect
+
+finder = FarMarFinder.new
+puts finder.vendors.find_by_name("shields inc").inspect
+puts finder.vendors.find_all_above_no_of_employees('11').count

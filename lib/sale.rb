@@ -10,7 +10,7 @@ class Sale
   end
 
   def self.all
-    @@all ||= CSV.read('./support/sales.csv').map do |array|
+    @all ||= CSV.read('./support/sales.csv').map do |array|
       Sale.new(array)
     end
   end
@@ -21,17 +21,17 @@ class Sale
     end
   end
 
-  # def self.find_by(x, match)
-  #   all.find do |sale|
-  #     sale.x.downcase == match
-  #   end
-  # end
+  def self.find_by_amount(amount)
+    all.find do |sales|
+      sales.amount == amount.to_i
+    end
+  end
 
-  # def self.find_all_by(x, match)
-  #   all.select do |sale|
-  #     sale.x.downcase == match
-  #   end
-  # end
+  def self.find_all_above_amount(amount)
+    all.select do |sales|
+      sales.amount >= amount.to_i
+    end
+  end
   
   def vendor
     Vendor.all.find { |vendor| vendor.id == vendor_id }

@@ -12,7 +12,7 @@ class Market
   end
 
   def self.all
-    @@all ||= CSV.read('./support/markets.csv').map do |market|
+    @all ||= CSV.read('./support/markets.csv').map do |market|
       Market.new(market)
     end
   end
@@ -23,17 +23,17 @@ class Market
     end
   end
 
-  # def self.find_by(x, match)
-  #   all.find do |market|
-  #     market.x.downcase = match
-  #   end
-  # end
+  def self.find_by_name(name)
+    all.find do |market|
+      market.name.downcase == name.downcase
+    end
+  end
 
-  # def self.find_all_by(x, match)
-  #   all.select do |market|
-  #     market.x.downcase = match
-  #   end
-  # end
+  def self.find_all_by_state(state)
+    all.select do |market|
+      market.state.downcase == state.downcase
+    end
+  end
 
   def vendors
     Vendor.all.select { |vendor| vendor.market_id == id }
