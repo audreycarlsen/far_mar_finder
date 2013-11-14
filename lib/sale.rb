@@ -32,7 +32,21 @@ class Sale
       sales.amount >= amount.to_i
     end
   end
-  
+
+  def self.best_day
+    freq_hash = {}
+    all.each { |sale|
+      if freq_hash.has_key?(sale.purchase_time.to_date)
+        freq_hash[sale.purchase_time.to_date] += 1
+      else
+        freq_hash[sale.purchase_time.to_date] = 1
+      end
+    }
+    values_array = freq_hash.values
+    index = values_array.index(values_array.max)
+    freq_hash.keys[index]
+  end
+
   def vendor
     Vendor.all.find { |vendor| vendor.id == vendor_id }
   end

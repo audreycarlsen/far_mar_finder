@@ -29,4 +29,4 @@ end
 
 
 finder = FarMarFinder.new
-puts finder.vendors.find(1).revenue
+puts finder.sales.best_day
