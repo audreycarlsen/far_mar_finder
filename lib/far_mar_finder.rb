@@ -29,4 +29,8 @@ end
 
 
 finder = FarMarFinder.new
+<<<<<<< HEAD
 puts finder.products.most_revenue(5)
+=======
+puts finder.vendors.most_items(5)
+>>>>>>> d6dc73398d06017f187d22735444b66534700f8c
