@@ -40,7 +40,7 @@ class Market
   end
 
   def products
-    vendors.map { |vendor| vendor.products }.flatten
+    vendors.flat_map { |vendor| vendor.products }
   end
 
   def self.search(search_term)
