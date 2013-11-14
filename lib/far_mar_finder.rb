@@ -29,4 +29,4 @@ end
 
 
 finder = FarMarFinder.new
-puts finder.vendors.most_items(5).inspect
+puts finder.vendors.most_items(3)

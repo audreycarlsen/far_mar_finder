@@ -57,8 +57,8 @@ class Vendor
   # `self.most_items(n)` returns the top n vendor instances ranked by total number of items sold
   def self.most_items(n)
     vendor_hash = Sale.all.group_by { |sale| sale.vendor_id}
-    puts vendor_hash
-    vendor_hash.sort_by { |vendor, items| -items.count}.take(n).map(&:first)
+    vendor_id_array = vendor_hash.sort_by { |vendor, items| -items.count}.take(n).map(&:first)
+    vendor_id_array.map { |id| find(id) }
   end
 
 

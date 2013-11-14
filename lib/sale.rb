@@ -35,7 +35,7 @@ class Sale
 
   def self.best_day
     day_hash = all.group_by { |sale| sale.purchase_time.to_date }
-    puts day_hash.sort_by { |day, sales| sales.count }.last[0]
+    day_hash.sort_by { |day, sales| sales.count }.last[0]
   end
 
   def vendor
