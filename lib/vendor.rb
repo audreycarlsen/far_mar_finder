@@ -54,6 +54,14 @@ class Vendor
     sales.map { |sale| sale.amount.to_i }.reduce(:+)
   end
 
+  # `self.most_items(n)` returns the top n vendor instances ranked by total number of items sold
+  def self.most_items(n)
+    vendor_hash = all.group_by { |vendor| vendor.sales}
+    vendor_hash.sort_by { |items, vendor| -vendor.count}.take(n).map(&:first)
+  end
+
+
+
   # def revenue(options = {})
   #   date_max = sales.map {|sale| sale.purchase_time}.max
   #   date_min = sales.map {|sale| sale.purchase_time}.min

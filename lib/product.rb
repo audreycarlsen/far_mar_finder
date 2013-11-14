@@ -37,6 +37,12 @@ class Product
     end
   end
 
+  # `best_day` returns a `Date` object with the most sales for the given product using the `Sale` purchase_time
+  def best_day
+    day_hash = sales.group_by { |sale| sale.purchase_time.to_date }
+    puts day_hash.sort_by { |day, sales| sales.count }.last[0]
+  end
+
   def vendor
     Vendor.all.find { |vendor| vendor.id == vendor_id }
   end
