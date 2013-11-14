@@ -37,12 +37,26 @@ class Product
     end
   end
 
+  def self.most_revenue(n)
+    revenue_hash = {}
+    all.each do |product| 
+      if !product.revenue.nil?
+        revenue_hash[product] = product.revenue 
+      end
+    end
+    revenue_hash.sort_by { |product, revenue| -revenue }.first(n).map(&:first)
+  end
+
   def vendor
     Vendor.all.find { |vendor| vendor.id == vendor_id }
   end
 
   def sales
     Sale.all.select { |sale| sale.product_id == id }
+  end
+
+  def revenue
+    sales.map { |sale| sale.amount.to_i }.reduce(:+)
   end
 
   def number_of_sales
