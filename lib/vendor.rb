@@ -46,14 +46,6 @@ class Vendor
     Product.all.select { |product| product.vendor_id == id }
   end
 
-  def sales
-    Sale.all.select { |sale| sale.vendor_id == id }
-  end
-
-  def revenue
-    sales.map { |sale| sale.amount.to_i }.reduce(:+)
-  end
-
   # `self.most_items(n)` returns the top n vendor instances ranked by total number of items sold
   def self.most_items(n)
     vendor_hash = Sale.all.group_by { |sale| sale.vendor_id}
@@ -61,14 +53,24 @@ class Vendor
     vendor_id_array.map { |id| find(id) }
   end
 
-  # TODO Fix this method
-  # `revenue(range_of_dates)` returns the total revenue for that vendor across several dates
-  def revenue_between_dates(range)
-    Sale.between(range.first.to_date, range.last.to_date).map { |vendor| vendor.revenue }
+  def sales
+    Sale.all.select { |sale| sale.vendor_id == id }
   end
 
+  def revenue(date = nil)
+    if not date
+      calculate_revenue(sales)
+    elsif date.class == Range
+      sales_between_dates = Sale.between(date.first, date.last)
+      calculate_revenue(sales_between_dates.select { |sale| sale.vendor_id == id })
+    elsif date.class == String
+      calculate_revenue(sales.select { |sale| sale.purchase_time == Date.parse(date) })
+    end
+  end
 
-
+  def calculate_revenue(sale_array)
+    sale_array.map { |sale| sale.amount }.reduce(:+)
+  end
   # def revenue(options = {})
   #   date_max = sales.map {|sale| sale.purchase_time}.max
   #   date_min = sales.map {|sale| sale.purchase_time}.min
