@@ -61,6 +61,12 @@ class Vendor
     vendor_id_array.map { |id| find(id) }
   end
 
+  # TODO Fix this method
+  # `revenue(range_of_dates)` returns the total revenue for that vendor across several dates
+  def revenue_between_dates(range)
+    Sale.between(range.first.to_date, range.last.to_date).map { |vendor| vendor.revenue }
+  end
+
 
 
   # def revenue(options = {})
