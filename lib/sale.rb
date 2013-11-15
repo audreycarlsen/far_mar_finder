@@ -4,7 +4,7 @@ class Sale
   def initialize(array)
     @id = array[0].to_i
     @amount = array[1].to_i
-    @purchase_time = Time.parse(array[2])
+    @purchase_time = Date.parse(array[2])
     @vendor_id = array[3].to_i
     @product_id = array[4].to_i
   end
@@ -46,7 +46,8 @@ class Sale
     Product.all.find { |product| product.id == product_id }
   end
 
+# Beginning and end time must be strings!
   def self.between(beginning_time, end_time)
-    all.select { |sale| Time.parse(beginning_time) < sale.purchase_time && sale.purchase_time < Time.parse(end_time) }
+    all.select { |sale| Date.parse(beginning_time) <= sale.purchase_time && sale.purchase_time <= Date.parse(end_time) }
   end
 end
