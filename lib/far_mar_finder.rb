@@ -27,7 +27,6 @@ class FarMarFinder
   end
 end
 
+
 finder = FarMarFinder.new
-run_time = Benchmark.measure { finder.products.most_revenue(5) }
-puts finder.products.most_revenue(5)
-puts "run-time was #{run_time.real}"
+puts finder.vendors.most_items(3)

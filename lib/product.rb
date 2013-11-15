@@ -39,6 +39,12 @@ class Product
 
 
   def self.most_revenue(n)
+
+    vendor_hash = Sale.all.group_by { |sale| sale.vendor_id}
+    vendor_id_array = vendor_hash.sort_by { |vendor, items| -items.count}.take(n).map(&:first)
+    vendor_id_array.map { |id| find(id) }
+
+
     revenue_hash = {}
     all.each do |product| 
       if !product.revenue.nil?
