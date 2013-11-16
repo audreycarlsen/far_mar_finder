@@ -26,7 +26,3 @@ class FarMarFinder
     Sale
   end
 end
-
-
-finder = FarMarFinder.new
-puts finder.products.most_revenue(4)

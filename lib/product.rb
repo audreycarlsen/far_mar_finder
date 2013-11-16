@@ -19,12 +19,6 @@ class Product
     end
   end
 
-  def self.by_vendor(vendor_id)
-    all.select do |product|
-      product.vendor_id == vendor_id
-    end
-  end
-
   def self.find_by_name(name)
     all.find do |product|
       product.name.downcase == name.downcase
@@ -37,6 +31,11 @@ class Product
     end
   end
 
+  def self.by_vendor(vendor_id)
+    all.select do |product|
+      product.vendor_id == vendor_id
+    end
+  end
 
   def self.most_revenue(n)
     revenue_hash = {}
@@ -48,12 +47,6 @@ class Product
     revenue_hash.sort_by { |product, revenue| -revenue }.first(n).map(&:first)
   end
 
-  # `best_day` returns a `Date` object with the most sales for the given product using the `Sale` purchase_time
-  def best_day
-    day_hash = sales.group_by { |sale| sale.purchase_time }
-    day_hash.sort_by { |day, sales| sales.count }.last[0]
-  end
-
   def vendor
     Vendor.all.find { |vendor| vendor.id == vendor_id }
   end
@@ -62,11 +55,17 @@ class Product
     Sale.all.select { |sale| sale.product_id == id }
   end
 
-  def revenue
-    sales.map { |sale| sale.amount.to_i }.reduce(:+)
-  end
-
   def number_of_sales
     sales.count
   end
+
+  def revenue
+    sales.map { |sale| sale.amount.to_i }.reduce(:+)
+  end
+  
+  def best_day
+    day_hash = sales.group_by { |sale| sale.purchase_time }
+    day_hash.sort_by { |day, sales| sales.count }.last[0]
+  end
+
 end

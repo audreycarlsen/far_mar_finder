@@ -33,23 +33,23 @@ class Sale
     end
   end
 
+  def self.between(beginning_time, end_time)
+    beginning_time = beginning_time.to_s
+    end_time = end_time.to_s
+    all.select { |sale| Date.parse(beginning_time) <= sale.purchase_time && 
+                        sale.purchase_time <= Date.parse(end_time) }
+  end
+
   def self.best_day
     day_hash = all.group_by { |sale| sale.purchase_time }
     day_hash.sort_by { |day, sales| sales.count }.last[0]
   end
-
+  
   def vendor
     Vendor.all.find { |vendor| vendor.id == vendor_id }
   end
 
   def product
     Product.all.find { |product| product.id == product_id }
-  end
-
-  def self.between(beginning_time, end_time)
-    beginning_time = beginning_time.to_s
-    end_time = end_time.to_s
-    all.select { |sale| Date.parse(beginning_time) <= sale.purchase_time && 
-                        sale.purchase_time <= Date.parse(end_time) }
   end
 end
