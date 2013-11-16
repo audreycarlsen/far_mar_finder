@@ -49,17 +49,42 @@ class Market
     end
   end
 
-  def preferred_vendor(options = {})
-    max_revenue = vendors.map {|vendor| vendor.revenue}.max
-    vendors.select { |vendor| vendor.revenue == max_revenue}
+  def preferred_vendor(date = nil)
+    if date
+      date = date.to_s
+      vendor_hash = {}
+      vendors.each do |vendor| 
+        if vendor.revenue(date)
+          vendor_hash[vendor] = vendor.revenue(date)
+        end
+      end
+      vendor_hash.max_by { |vendor, revenue| revenue }[0]
+    else
+      vendors.max_by {|vendor| vendor.revenue}
+    end
   end
 
-  # def preferred_vendor_by_date(date)
-  #   Vendor.find(Sale.find_by_amount(sale_amounts.max).vendor_id)
-  # end
+# Accidentally complicated extra method that we can't bear to delete even though it wasn't assigned.
+  def vendor_with_most_sales(date)
+    date = date.to_s
+    vendor_sales_array = vendors.flat_map { |vendor| vendor.sales }
+    vendor_sales_array.select! { |sale| sale.purchase_time == Date.parse(date) }
+    vendor_sales_hash = vendor_sales_array.group_by { |sale| sale.vendor_id }
+    Vendor.find(vendor_sales_hash.max_by { |vendor, sales| sales.count }[0])
+  end
 
-  def worst_vendor
-    min_revenue = vendors.map {|vendor| vendor.revenue}.min
-    vendors.select { |vendor| vendor.revenue == min_revenue}
+  def worst_vendor(date = nil)
+    if date
+      date = date.to_s
+      vendor_hash = {}
+      vendors.each do |vendor| 
+        if vendor.revenue(date)
+          vendor_hash[vendor] = vendor.revenue(date)
+        end
+      end
+      vendor_hash.min_by { |vendor, revenue| revenue }[0]
+    else
+      vendors.min_by {|vendor| vendor.revenue}
+    end
   end
 end

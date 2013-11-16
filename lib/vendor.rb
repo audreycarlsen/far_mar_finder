@@ -71,12 +71,4 @@ class Vendor
   def calculate_revenue(sale_array)
     sale_array.map { |sale| sale.amount }.reduce(:+)
   end
-  # def revenue(options = {})
-  #   date_max = sales.map {|sale| sale.purchase_time}.max
-  #   date_min = sales.map {|sale| sale.purchase_time}.min
-  #   date = options[:date] || (date_min..date_max)
-
-  #   date.map do |date| 
-  #   sales.map { |sale| sale.amount.to_i }.reduce(:+)
-  # end
 end

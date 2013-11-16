@@ -29,4 +29,4 @@ end
 
 
 finder = FarMarFinder.new
-puts finder.vendors.find(1).revenue(("2013-11-10".."2013-11-12"))
+puts finder.products.most_revenue(4)
